@@ -64,6 +64,27 @@ function addBookToLibrary(Book){
     myLibrary = myLibrary.concat(Book);
 }
 
+function getIndex(event){
+    let index;
+    if(event.target.nodeName == "SPAN"){
+        index = parseInt(event.target.parentNode.parentNode.id);
+    }else{
+        index = parent(event.target.parentNode.id);
+    }
+
+    return index;
+}
+
+function removeBook(index){
+    if(index != 0){
+        let initial = myLibrary.slice(0, index);
+        let final = myLibrary.slice(index + 1, myLibrary.length);
+        myLibrary = initial.concat(...final);
+    }else{
+        myLibrary = myLibrary.slice(1, myLibrary.length)
+    } 
+}
+
 function showLibrary(library){
 
     bookSection.innerHTML = "";
@@ -86,7 +107,10 @@ function showLibrary(library){
 
     deleteButtons.forEach(element => {
         element.addEventListener("click", event => {
-            console.log(event);
+            
+            let index = getIndex(event);
+            removeBook(index);
+            showLibrary(myLibrary);
         });
     })
 }
