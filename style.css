@@ -1,7 +1,10 @@
 :root{
     --navColor: #eeeeee;
-    --buttonsColor: #00cc00;
+    --addColor: #00cc00;
     --hoverbuttonsColor: #00aa00;
+    --cancelColor: #cc0000;
+    --hoverCancelColor: #aa0000;
+    --inputColor: #dddddd;
 }
 
 *{
@@ -32,22 +35,39 @@ h1{
     justify-content: space-between;
     padding: 15px 40px;
     background-color: var(--navColor);
+    position: sticky;
+    top: 0;
+    z-index: 500;
 }
 
-#add-button{
+.add-button{
+    background-color: var(--addColor);
+}
+
+.cancel-button{
+    background-color: var(--cancelColor);
+}
+
+button{
     font-size: 1.25em;
     font-weight: 900;
     align-items: center;
     padding: 5px 20px;
     color: var(--navColor);
-    background-color: var(--buttonsColor);
     border-radius: 50px;
     border: none;
 }
 
-#add-button:hover{
-    background-color: var(--hoverbuttonsColor);
+button:hover{
     cursor: pointer;
+}
+
+.cancel-button:hover{
+    background-color: var(--hoverCancelColor);
+}
+
+.add-button:hover{
+    background-color: var(--hoverbuttonsColor);  
 }
 
 #books-section{
@@ -64,6 +84,7 @@ h1{
     grid-template-columns: 155px;
     background-color: var(--navColor);
     border-radius: 20px;
+    box-shadow: 5px 5px 15px black;
 }
 
 .caratula-card{
@@ -96,11 +117,57 @@ h1{
 .button-card{
     background-color: var(--navColor);
     border: none;
+    color: #000000;
 }
 
 .button-card:hover{
     color: var(--hoverbuttonsColor);
     cursor: pointer;
+}
+
+textarea{
+    resize: none;
+}
+
+#add-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+
+#add-form{
+    background-color: var(--navColor);
+    border-radius: 20px;
+    padding: 30px 30px;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    gap: 15px;
+    width: 500px;
+}
+
+#add-form > div{
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+input, textarea{
+    background-color: var(--inputColor);
+    border: none;
+    border-radius: 50px;
+    font-size: 1.25em;
+    padding: 10px;
+}
+
+.hidden{
+    display: none;
 }
 
 /* The switch - the box around the slider */
@@ -144,11 +211,11 @@ h1{
   }
   
   input:checked + .slider {
-    background-color: var(--buttonsColor);
+    background-color: var(--addColor);
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px var(--buttonsColor);
+    box-shadow: 0 0 1px var(--addColor);
   }
   
   input:checked + .slider:before {
